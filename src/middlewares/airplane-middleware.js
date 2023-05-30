@@ -14,4 +14,16 @@ function validateCreateRequestBody(req, res, next) {
   next();
 }
 
-module.exports = { validateCreateRequestBody };
+function validateUpdateRequestBody(req, res, next) {
+  if (Object.keys(req.body).length === 0) {
+    ErrorResponse.message = "Something went wrong";
+    ErrorResponse.error = new AppError(
+      ["you have not sent the correct request body"],
+      StatusCodes.BAD_REQUEST
+    );
+    return res.status(ErrorResponse.error.statuscode).json(ErrorResponse);
+  }
+  next();
+}
+
+module.exports = { validateCreateRequestBody, validateUpdateRequestBody };
