@@ -1,6 +1,6 @@
 success = {
   success: true,
-  message: "Something completed your request",
+  message: "Successfully completed your request",
   error: {},
   data: {},
 };
