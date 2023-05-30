@@ -69,7 +69,6 @@ async function updateAirplane(id, data) {
     const response = await airplaneRepository.update(id, data);
     return response;
   } catch (error) {
-    console.log(error);
     if (error.statuscode == StatusCodes.NOT_FOUND) {
       throw new AppError(
         "Airplane/column to be updated does not exist",
