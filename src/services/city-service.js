@@ -74,7 +74,6 @@ async function updateCity(id, data) {
     const city = await cityRepository.update(id, data);
     return city;
   } catch (error) {
-    console.log(error);
     if (error.statuscode == StatusCodes.NOT_FOUND) {
       throw new AppError(
         "City/column to be updated does not exist",
