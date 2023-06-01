@@ -15,15 +15,15 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "cascade",
         onUpdate: "cascade",
       });
-      this.belongsto(models.airport, {
+      this.belongsTo(models.Airport, {
         foreignkey: "code",
-        as: "departureairport",
+        as: "departureAirport",
         ondelete: "cascade",
         onUpdate: "cascade",
       });
-      this.belongsto(models.airport, {
+      this.belongsTo(models.Airport, {
         foreignkey: "code",
-        as: "departureairport",
+        as: "arrivalAirport",
         ondelete: "cascade",
         onUpdate: "cascade",
       });
