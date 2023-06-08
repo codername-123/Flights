@@ -50,6 +50,8 @@ async function getAllFlights(req, res) {
   }
 }
 
+// TODO: add updatecontroller because departureTime and arrival Time for flights can change
+
 module.exports = {
   createFlight,
   getAllFlights,
