@@ -24,6 +24,19 @@ function validateCreateRequestBody(req, res, next) {
   next();
 }
 
+function validateUpdateSeatRequestBody(req, res, next) {
+  console.log(req.body);
+  if (!req.body.seats) {
+    ErrorResponse.message = "Something went wrong";
+    ErrorResponse.error = new AppError(
+      ["you have not sent the correct request body"],
+      StatusCodes.BAD_REQUEST
+    );
+    return res.status(ErrorResponse.error.statuscode).json(ErrorResponse);
+  }
+  next();
+}
+
 function validateTime(req, res, next) {
   const flightArrivalTime = req.body.arrivalTime;
   const flightDepartureTime = req.body.departureTime;
@@ -110,4 +123,5 @@ module.exports = {
   validateArrivalDestinationCodeReqBody,
   validatePrice,
   validateArrivalDestinationCodeQueryParams,
+  validateUpdateSeatRequestBody,
 };

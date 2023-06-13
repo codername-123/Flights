@@ -49,10 +49,45 @@ async function getAllFlights(req, res) {
     return res.status(error.statuscode).json(ErrorResponse);
   }
 }
+/**
+ * GET: /flights/:id
+ * req.body: {}
+ */
+async function getFlight(req, res) {
+  try {
+    const id = parseInt(req.params.id);
+    const response = await FlightService.getFlight(id);
+    SuccessResponse.data = response;
+    return res.status(StatusCodes.OK).json(SuccessResponse);
+  } catch (error) {
+    ErrorResponse.error = error;
+    return res.status(error.statuscode).json(ErrorResponse);
+  }
+}
 
+/**
+ * POST: /flights/:id/seats
+ * req.body: {flightId: 23, seats: 4, dec: false}
+ */
+async function updateSeats(req, res) {
+  try {
+    const response = await FlightService.updateSeats({
+      flightId: req.params.id,
+      seats: req.body.seats,
+      dec: req.body.dec,
+    });
+    SuccessResponse.data = response;
+    return res.status(StatusCodes.OK).json(SuccessResponse);
+  } catch (error) {
+    ErrorResponse.error = error;
+    return res.status(error.statuscode).json(ErrorResponse);
+  }
+}
 // TODO: add updatecontroller because departureTime and arrival Time for flights can change
 
 module.exports = {
   createFlight,
   getAllFlights,
+  getFlight,
+  updateSeats,
 };
